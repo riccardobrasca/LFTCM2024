@@ -106,7 +106,7 @@ You can use Codespaces if you have trouble installing Lean locally. These work f
 
 ### Using Codespaces
 
-You can temporarily play with Lean using Github codespaces. This requires a Github account, and you can only use it for a limited amount of time each month. If you are signed in to Github, click here:
+You can temporarily play with Lean using Github Codespaces. This requires a Github account, and you can only use it for a limited amount of time each month. If you are signed in to Github, click here:
 
 <a href='https://codespaces.new/riccardobrasca/LFTCM2024' target="_blank" rel="noreferrer noopener"><img src='https://github.com/codespaces/badge.svg' alt='Open in GitHub Codespaces' style='max-width: 100%;'></a>
 
