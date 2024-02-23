@@ -16,7 +16,11 @@ Note: To get this repository, you will need to download Lean's mathematical libr
 * In the top-middle (or top-right) of the screen there is a Lean menu marked by `∀`.
   In it, choose `Open Project... > Project: Download Project`. If you don't see the `∀`, the Lean extension is not installed, go back to the previous step or ask for help.
 ![1](img/1.png)
-* Type `https://github.com/riccardobrasca/LFTCM2024.git` and press enter (note that VSCode proposes you to download mathlib, that is *not* this repository).
+* Type
+  ```
+  https://github.com/riccardobrasca/LFTCM2024.git
+  ```
+  and press enter (note that VSCode proposes you to download mathlib, that is *not* this repository).
 ![2](img/2.png)
 * Choose a name for the folder where you want to have this repository (for example `LFTCM2024`).
   This downloads the project, including mathlib, and will take a bit of time.
@@ -36,19 +40,30 @@ Note: To get this repository, you will need to download Lean's mathematical libr
 
 * Use `cd` to navigate to a directory where you would like to create the `LFTCM2024` folder.
 
-* Run `git clone https://github.com/riccardobrasca/LFTCM2024.git`.
+* Run the following three commands.
+  ```
+  git clone https://github.com/riccardobrasca/LFTCM2024.git
+  ```
+  ```
+  cd LFTCM2024
+  ```
+  ```
+  lake exe cache get!
+  ```
+The last one downloads mathlib, and will take a bit of time
+* On Windows, if you get an error that starts with `curl: (35) schannel: next InitializeSecurityContext failed` it is probably your antivirus program that doesn't like that we're downloading many files. The easiest solution is to temporarily disable your antivirus program.
 
-* Run `cd LFTCM2024`
-
-* Run `lake exe cache get!`
-  * This downloads mathlib, and will take a bit of time
-  * On Windows, if you get an error that starts with `curl: (35) schannel: next InitializeSecurityContext failed` it is probably your antivirus program that doesn't like that we're downloading many files. The easiest solution is to temporarily disable your antivirus program.
-
-* Run `lake build +LFTCM2024.Common`
-  * This should take less than 1 minute. If you get more than a few lines of output, then you're rebuilding Mathlib from scratch, which means that the previous step went wrong. You can quit the execution and ask for help.
+* Run
+  ```
+  lake build +LFTCM2024.Common
+  ```
+This should take less than 1 minute. If you get more than a few lines of output, then you're rebuilding Mathlib from scratch, which means that the previous step went wrong. You can quit the execution and ask for help.
 
 * Launch VS Code, either through your application menu or by typing
-  `code .` (note the dot!). (MacOS users need to take a one-off
+  ```
+  code .
+  ```
+(note the dot!). (MacOS users need to take a one-off
   [extra step](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line)
    to be able to launch VS Code from the command line.)
 
@@ -65,7 +80,11 @@ Note: To get this repository, you will need to download Lean's mathematical libr
 
 ### Update the repository
 
-If you have already followed the steps above, and want to update the repository, open a terminal in your local copy of this repository (e.g. `cd LFTCM2024`) and then run `git pull`. This gives you the new exercises.
+If you have already followed the steps above, and want to update the repository, open a terminal in your local copy of this repository (e.g. `cd LFTCM2024`) and then run
+```
+git pull
+```
+This gives you the new exercises.
 
 ### Error Lens extension
 
