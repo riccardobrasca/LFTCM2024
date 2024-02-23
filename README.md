@@ -120,4 +120,4 @@ To restart a previous codespace, go to [https://github.com/codespaces/](https://
 If you get the error `unknown package 'Mathlib'` and a red squiggle under `import Mathlib.Tactic` then you probably didn't open the right folder (what you see might be slightly different from the screenshot below depending on the extensions you have installed, but the red squiggle shouldn't be there).
 ![6](img/6.png)
 * Make sure to select `File/Open Folder` (*not* `File/Open File`) and to select the root folder called `LFTCM2024` (or the name you chose during the installation). Note that this folder contains another folder also called `LFTCM2024`: you have to select the first one (*not* the one `LFTCM2024/LFTCM2024`).
-* If the error persists you can use codespace as described above and ask for help.
+* If the error persists you can use Codespaces as described above and ask for help.
