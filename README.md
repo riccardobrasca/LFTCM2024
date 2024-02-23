@@ -1,4 +1,4 @@
-# LFTCM2024 Lean for the curious mathematician
+# Lean for the curious mathematician 2024
 
 25-29 March 2024
 
