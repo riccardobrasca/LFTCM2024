@@ -59,13 +59,13 @@ The last one downloads mathlib, and will take a bit of time
   ```
 This should take less than 1 minute. If you get more than a few lines of output, then you're rebuilding Mathlib from scratch, which means that the previous step went wrong. You can quit the execution and ask for help.
 
-* Launch VS Code, either through your application menu or by typing
+* Launch VS Code, either through your application menu or by typing (note the dot!)
   ```
   code .
   ```
-(note the dot!). (MacOS users need to take a one-off
+ MacOS users need to take a one-off
   [extra step](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line)
-   to be able to launch VS Code from the command line.)
+   to be able to launch VS Code from the command line.
 
 * If you launched VS Code from a menu, on the main screen, or in the File menu,
   click "Open folder" (just "Open" on a Mac), and choose the folder
