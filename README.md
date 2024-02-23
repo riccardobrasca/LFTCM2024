@@ -56,8 +56,12 @@ Note: To get this repository, you will need to download Lean's mathematical libr
   click "Open folder" (just "Open" on a Mac), and choose the folder
   `LFTCM2024` (*not* one of its subfolders).
 
+* If VSCode asks `Do you trust the authors of the files in this folder?` click `Yes, I trust the authors`
+
 * Test that everything is working by opening `LFTCM2024/Test.lean`.
   It is normal if it takes 10-40 seconds for Lean to start up.
+
+* Everything should be ready now. If you see a blue squiggle under `#eval`, Lean is running correctly. 
 
 ### Update the repository
 
