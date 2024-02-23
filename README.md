@@ -10,9 +10,9 @@ This is the main repository for the conference [Lean For The Curious Mathematici
 
 ## Installation
 
-Note: To get this repository, you will need to download Lean's mathematical library, which takes about 5 GB of storage space.
+Note: to get this repository, you will need to download Lean's mathematical library, which takes about 5 GB of storage space.
 
-* You have to install Lean, and two supporting programs: Git and VSCode. Follow these [instructions](https://leanprover-community.github.io/get_started.html) to do this. You do not have to follow the last step (creating Lean projects). Instead, use either VSCode or a terminal to get this repository.
+* You have to install Lean, and two supporting programs: Git and VSCode (including the Lean4 extension). Follow these [instructions](https://leanprover-community.github.io/get_started.html) to do this. You do not have to follow the last step (creating Lean projects). Instead, use either VSCode or a terminal to get this repository.
 
 ### Get the Repository using VSCode
 
