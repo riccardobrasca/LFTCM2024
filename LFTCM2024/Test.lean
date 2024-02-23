@@ -1,4 +1,5 @@
 import Mathlib.Tactic
+import LFTCM2024
 
 /- This is a test file. Lean is configured correctly if you see the output "32" when
   mousing over or clicking on the next line, and you see no other errors in this file. -/
