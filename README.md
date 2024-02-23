@@ -98,7 +98,7 @@ This gives you the new exercises.
 ### Error Lens extension
 
 Optional: some users find it useful to download the `Error Lens` extension. This displays Lean messages directly in your source file.
-To get it, in the left bar of VSCode, click on the `Extensions` button (4-th button), and search and install the extension `Error Lens`. It will start automatically.
+To get it, in the left bar of VSCode, click on the `Extensions` button (4-th or 5-th button), and search and install the extension `Error Lens`. It will start automatically.
 
 ## Alternative ways to use Lean
 
