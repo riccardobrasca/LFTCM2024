@@ -31,7 +31,7 @@ Note: to get this repository, you will need to download Lean's mathematical libr
 * Choose a name for the folder where you want to have this repository (for example `LFTCM2024`).
   This downloads the project, including mathlib, and will take a bit of time.
 * Press `Open Project Folder` when asked if you want to open the folder.
-* If VSCode asks `Do you trust the authors of the files in this folder?` click `Yes, I trust the authors`
+* If VSCode asks `Do you trust the authors of the files in this folder?` click `Yes, I trust the authors`.
 * Open the file `LFTCM2024/Test.lean` using the explorer button in the top-right.
   
   ![3](img/3.png)
