@@ -114,15 +114,3 @@ def elabIdentFactorial : TermElab := fun stx expectedType? =>
 attribute [scoped term_elab ident] elabIdentFactorial
 
 end Nat
-
-/- lemmas missing in Mathlib -/
-namespace Filter
-variable {α β : Type*} {m : α → β}
-@[gcongr]
-theorem map_le_map {F G : Filter α} (h : F ≤ G) : map m F ≤ map m G :=
-  map_mono h
-
-@[gcongr]
-theorem comap_le_comap {F G : Filter β} (h : F ≤ G) : comap m F ≤ comap m G :=
-  comap_mono h
-end Filter
