@@ -34,7 +34,7 @@ Note: To get this repository, you will need to download Lean's mathematical libr
 
 * Open a terminal (I recommend `git bash` on Windows, which was installed as part of git in the first step).
 
-* Use `cd` to navigate to a directory where you would like to create the `LeanInRome` folder.
+* Use `cd` to navigate to a directory where you would like to create the `LFTCM2024` folder.
 
 * Run `git clone https://github.com/riccardobrasca/LFTCM2024.git`.
 
