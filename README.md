@@ -2,7 +2,11 @@
 
 25-29 March 2024
 
-See the subfolder `LFTCM2024` for the `.lean` files.
+This is the main repository for the conference [Lean for the curious mathematician 2024](https://conferences.cirm-math.fr/2970.html).
+
+* All the files needed to during the lectures are in the subfolder `LFTCM2024`. See below for the instructions to install everything you need.
+* [Here](https://www.cirm-math.fr/Schedule/display.php?id_renc=2970) is the schedule of the conference.
+
 
 ## Installation
 
