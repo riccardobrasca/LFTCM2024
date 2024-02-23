@@ -114,3 +114,10 @@ You can temporarily play with Lean using Github codespaces. This requires a Gith
 * After 1-2 minutes you see a VSCode window in your browser. However, it is still busily downloading mathlib in the background, so give it another few minutes (5 to be safe) and then open a `.lean` file to start.
 
 To restart a previous codespace, go to [https://github.com/codespaces/](https://github.com/codespaces/).
+
+## Troubleshooting
+
+If you get the error `unknown package 'Mathlib'` and a red squiggle under `import Mathlib.Tactic` then you probably didn't open the right folder (what you see might be slightly different from the screenshot below depending on the extensions you have installed, but the red squiggle shouldn't be there).
+![6](img/6.png)
+* Make sure to select `File/Open Folder` (*not* `File/Open File`) and to select the root folder called `LFTCM2024` (or the name you chose during the installation). Note that this folder contains another folder also called `LFTCM2024`: you have to select the first one (*not* the one `LFTCM2024/LFTCM2024`).
+* If the error persists you can use codespace as described above and ask for help.
