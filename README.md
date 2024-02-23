@@ -14,14 +14,15 @@ Note: To get this repository, you will need to download Lean's mathematical libr
 
 * Open Visual Studio Code
 * In the top-middle (or top-right) of the screen there is a Lean menu marked by `∀`.
-  In it, choose `Open Project... > Project: Download Project`.
+  In it, choose `Open Project... > Project: Download Project`. If you don't see the `∀`, the Lean extension is not installed, go back to the previous step or ask for help.
 ![1](img/1.png)
-* Type `https://github.com/riccardobrasca/LFTCM2024.git` and press enter
+* Type `https://github.com/riccardobrasca/LFTCM2024.git` and press enter (note that VSCode proposes you to download mathlib, that is *not* this repository)
 ![2](img/2.png)
 * Choose a name for the folder where you want to have this repository (for example `LFTCM2024`).
   This downloads the project, including mathlib, and will take a bit of time.
-* Press `open` when asked if you want to open the folder
+* Press `Open Project Folder` when asked if you want to open the folder
 * Open the file `LFTCM2024/Test.lean` using the explorer button in the top-right. Do **not** press `Restart Lean` or `Rebuild Imports` when these pop-ups show up. (If you do, you will rebuild mathlib yourself, which is not recommended)
+![3](img/3.png)
 
 
 
