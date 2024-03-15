@@ -5,8 +5,8 @@ import Mathlib.Data.Int.Parity
 import Mathlib.RingTheory.Int.Basic
 
 
-/- Here are some examples of working with ℕ and ℤ in mathlib, the idea is to prove a bit of the
-descent step used in the n=3 case. -/
+/- Here are some examples of working with ℕ and ℤ in mathlib, the idea is to prove a some of the
+ steps used in the n=3 case. -/
 
 /-We have gcd's. They take two integers and return the gcd and a natural number, if you go and look
 at Std.Data.Int.Gcd you'll see some lemmas about this. Try and find the results for the following
