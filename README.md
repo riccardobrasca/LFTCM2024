@@ -36,13 +36,10 @@ Note: to get this repository, you will need to download Lean's mathematical libr
 * Press `Open Project Folder` when asked if you want to open the folder.
 * If VSCode asks `Do you trust the authors of the files in this folder?` click `Yes, I trust the authors`.
 * Open the file `LFTCM2024/Test.lean` using the explorer button in the top-left.
-
   ![3](img/3.png)
 * VSCode will pause for a bit (10-40 seconds, depending on your computer), showing a `Starting Lean language client` pop-up.
-
   ![4](img/4.png)
 * When the pop-up `Imports of 'Test.lean' are out of date and must be rebuilt.` appears, click on `Restart File` and wait a couple of seconds (this part should be very quick).
-
   ![5](img/5.png)
 * Everything should be ready now. If you see a blue squiggle under `#eval`, Lean is running correctly.
 
