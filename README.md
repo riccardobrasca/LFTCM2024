@@ -17,6 +17,9 @@ Note: to get this repository, you will need to download Lean's mathematical libr
 ### Get the Repository using VSCode
 
 * Open Visual Studio Code.
+
+* If no file is open, create a new empty text file (`File ... > New Text File`).
+
 * In the top-right (or top-middle) of the screen there is a Lean menu marked by `∀`.
   In it, choose `Open Project... > Project: Download Project`. If you don't see the `∀`, the Lean extension is not installed, go back to the previous step or ask for help.
 
@@ -33,15 +36,12 @@ Note: to get this repository, you will need to download Lean's mathematical libr
 * Press `Open Project Folder` when asked if you want to open the folder.
 * If VSCode asks `Do you trust the authors of the files in this folder?` click `Yes, I trust the authors`.
 * Open the file `LFTCM2024/Test.lean` using the explorer button in the top-left.
-  
   ![3](img/3.png)
 * VSCode will pause for a bit (10-40 seconds, depending on your computer), showing a `Starting Lean language client` pop-up.
-  
   ![4](img/4.png)
 * When the pop-up `Imports of 'Test.lean' are out of date and must be rebuilt.` appears, click on `Restart File` and wait a couple of seconds (this part should be very quick).
-  
   ![5](img/5.png)
-* Everything should be ready now. If you see a blue squiggle under `#eval`, Lean is running correctly. 
+* Everything should be ready now. If you see a blue squiggle under `#eval`, Lean is running correctly.
 
 ### Get the Repository using a terminal
 
@@ -59,14 +59,14 @@ Note: to get this repository, you will need to download Lean's mathematical libr
   ```
   lake exe cache get!
   ```
-  The last one downloads mathlib, and will take a bit of time
+  The last one downloads mathlib, and will take a bit of time.
 * On Windows, if you get an error that starts with `curl: (35) schannel: next InitializeSecurityContext failed` it is probably your antivirus program that doesn't like that we're downloading many files. The easiest solution is to temporarily disable your antivirus program.
 
 * Run
   ```
   lake build +LFTCM2024.Common
   ```
-  This should take less than 1 minute. If you get more than a few lines of output, then you're rebuilding Mathlib from scratch, which means that the previous step went wrong. You can quit the execution and ask for help.
+  This should take less than 1 minute. If you get more than a few lines of output, then you're rebuilding Mathlib from scratch, which means that one of the steps above (`lake exe cache get!`) went wrong. You can quit the execution and ask for help.
 
 * Launch VS Code, either through your application menu or by typing (note the dot!)
   ```
@@ -85,7 +85,7 @@ Note: to get this repository, you will need to download Lean's mathematical libr
 * Test that everything is working by opening `LFTCM2024/Test.lean`.
   It is normal if it takes 10-40 seconds for Lean to start up.
 
-* Everything should be ready now. If you see a blue squiggle under `#eval`, Lean is running correctly. 
+* Everything should be ready now. If you see a blue squiggle under `#eval`, Lean is running correctly.
 
 ### Update the repository
 
