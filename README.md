@@ -66,7 +66,7 @@ Note: to get this repository, you will need to download Lean's mathematical libr
   ```
   lake build +LFTCM2024.Common
   ```
-  This should take less than 1 minute. If you get more than a few lines of output, then you're rebuilding Mathlib from scratch, which means that one of the steps above (`lake exe cache get!`) went wrong. You can quit the execution (by typing `ctrl c` or `cmd c`) and ask for help.
+  This should take less than 1 minute. If you get more than a few lines of output, then you're rebuilding Mathlib from scratch, which means that one of the steps above (`lake exe cache get!`) went wrong. You can quit the execution (by typing `Ctrl c`) and ask for help.
 
 * Launch VS Code, either through your application menu or by typing (note the dot!)
   ```
