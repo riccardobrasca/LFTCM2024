@@ -13,8 +13,8 @@ example (h : IsPrimitiveRoot ζ n) : ∀ l : ℕ, ζ ^ l = 1 → n ∣ l := by e
 
 example :  IsPrimitiveRoot ζ 1 ↔ ζ = 1 := by exact IsPrimitiveRoot.one_right_iff
 
-/- Next lets look at geoemtric sums. Note that we have  `geom_sum_mul_neg` which says
-(∑ i in Finset.range n, x ^ i) * (1 - x) = 1 - x ^ n, so we can use this to check the sume divides
+/- Next lets look at geometric sums. Note that we have  `geom_sum_mul_neg` which says
+(∑ i in Finset.range n, x ^ i) * (1 - x) = 1 - x ^ n, so we can use this to check the sum divides
 the rhs  -/
 lemma geo_sum_dvd (j : ℕ) : (∑ i in Finset.range j , ζ ^ i) ∣ 1 - ζ ^ j := by
   rw [← geom_sum_mul_neg]
