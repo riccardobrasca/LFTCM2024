@@ -106,7 +106,7 @@ sorry
 
 
 /-
-**Forwards reasoning** is where we chain implications forwards, deducing new facts from what we already knoow
+**Forwards reasoning** is where we chain implications forwards, deducing new facts from what we already know
 eventually reaching our goal.
 This can sometimes be more verbose than backwards reasoning, but is often more natural.
 
@@ -130,7 +130,7 @@ example : Continuous (fun x ↦ (sin (x ^ 2)) ^ 3 + cos (5 * x)) := by
 /-
 Some differences between rewriting and applying:
 - Rewriting can take place almost anywhere in the goal, but apply generally has to match the outermost thing you are trying to prove
-  e.g. if you are trying to prove an and satement, you'll need to split it in to two goals before trying apply
+  e.g. if you are trying to prove an and statement, you'll need to split it in to two goals before trying apply
 - Sometimes many rewrites are possible using the same lemma, and specifying more of the arguments will help
 -/
 
