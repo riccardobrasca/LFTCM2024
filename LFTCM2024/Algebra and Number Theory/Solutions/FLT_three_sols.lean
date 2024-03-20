@@ -44,7 +44,7 @@ lemma ne_zero_lem (a b c : ℤ) (ha : a ≠ 0) (habc : a = b * c) : b ≠ 0 := b
   rw [hb, zero_mul] at habc
   exact ha habc
 
-/-First we can check what happens if the tripple is not assumed to be coprime. In this case we can
+/-First we can check what happens if the triple is not assumed to be coprime. In this case we can
 divide out the by gcd and get a smaller solution
 
 One way to do this is to use gcd_lem_1 and _2 to get the gcd divides a,b,c and then divide out by the gcd

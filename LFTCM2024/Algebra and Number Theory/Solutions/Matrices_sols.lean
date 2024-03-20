@@ -26,7 +26,7 @@ def S : SL(2, ℤ) := ⟨S', S'_det⟩
 
 def T : SL(2, ℤ) := ⟨T', T'_det⟩
 
-/-The inverse of a matrix in SL(2, ℤ) is defined in terms of the adjucate-/
+/-The inverse of a matrix in SL(2, ℤ) is defined in terms of the adjugate-/
 
 example : (S⁻¹).1 = (adjugate ↑S) := by exact rfl
 
