@@ -30,9 +30,9 @@ Tactics we won't really discuss are in brackets.
 · To prove: `left`, `right`
 
 # Miscellaneous tactics we'll meet
-· `exfalso`, `unfold`, `rfl`, `ext`, `by_contra`, `contrapose`
+· `exfalso`, `unfold`, `rfl`, `ext`, `by_contra`, `by_cases`, `contrapose!`, `tauto`
 -/
-
+set_option linter.unusedVariables false
 namespace LFTCM2024
 section
 /-
@@ -347,4 +347,58 @@ example {m n k : ℕ} (h : m ∣ n ∨ m ∣ k) : m ∣ n * k := by
   . use b * n
     rw [mul_comm, hb, mul_assoc]
 
-end
+/-
+## Classical logic
+-/
+
+/- Earlier we proved: -/
+example : P → ¬¬P := by
+  intro hP hnotP
+  exact hnotP hP
+
+/- But to prove the converse we need to use classical logic, and apply the law of
+excluded middle: -/
+lemma not_not : ¬¬P → P := by
+  by_cases hP : P -- we case-split on `P ∨ ¬P`
+  · intro h
+    assumption
+  · intro h
+    exfalso
+    exact h hP
+
+/- The tactic `by_contra` just applies `not_not`: -/
+example : ¬¬P → P := by
+  intro hP
+  by_contra hP'
+  exact hP hP'
+
+/- You can use `not_not` to prove the following lemma directly. Alternatively, there are
+various tactics which use classical logic and are useful here: -/
+example : ¬(P → Q) → P ∧ ¬Q := by
+  tauto
+/- `tauto` can prove pretty much everything in this file. -/
+
+/- `push_neg` simplifies negation statements by "pushing" the negation as far
+inside the statement as possible: -/
+example : ¬(P → Q) → P ∧ ¬Q := by
+  push_neg
+  intro hP
+  assumption
+
+/- We can also `push_neg` at a hypothesis: -/
+example (P : α → Prop) (h : ¬∀ x, ¬P x) : ∃ x, P x := by
+  push_neg at h
+  assumption
+
+/- And `push_neg` can also simplify inequalities: -/
+example : ¬(∃ n : ℕ, ¬(3 < n) ∧ ¬(n ≤ 5)) := by
+  push_neg
+  intro n
+  tauto
+
+/- `contrapose` replaces a `p → q` goal with the contrapositive,
+`¬q → ¬p`. `contrapose!` combines this with `push_neg`. -/
+example : ¬(P → Q) → P ∧ ¬Q := by
+  contrapose!
+  intro hPQ
+  assumption
