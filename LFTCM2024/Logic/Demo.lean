@@ -58,9 +58,6 @@ live - `ℕ` is a type, and it has terms like `0` and `5`. A proposition
 `P : Prop` is like `ℕ` in that it can have terms - i.e. proofs - but any 2
 "terms of type `P`" are equivalent in Lean, because it's proof-irrelevant. If
 a proposition is false, it has no terms.)
-
-Treating implication statements (and `¬` and `∀` statements) as like function
-types can help you remember how to use them.
 -/
 
 /- First let's see how to *use* an implication statement;
