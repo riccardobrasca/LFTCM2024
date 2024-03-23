@@ -59,8 +59,8 @@ live - `ℕ` is a type, and it has terms like `0` and `5`. A proposition
 "terms of type `P`" are equivalent in Lean, because it's proof-irrelevant. If
 a proposition is false, it has no terms.)
 
-Treating implication statements (and `¬` and `∀` statements) as like functions can
-help you remember how to use them.
+Treating implication statements (and `¬` and `∀` statements) as like function
+types can help you remember how to use them.
 -/
 
 /- First let's see how to *use* an implication statement;
@@ -196,22 +196,23 @@ def Injective (f : α → β) : Prop :=
 
 example (f : α → β) (g : β → γ) (hf : Injective f) (hg : Injective g) :
     Injective (g ∘ f) := by
-  -- unfold Injective at hf hg ⊢
-  intro x y hxy
+  unfold Injective at hf hg ⊢
+  intro X Y hXY
   apply hf
   apply hg
-  exact hxy
+  exact hXY
 
 /- If you want to see what's going on better, you can use the `specialize`
 tactic to partially apply a local hypothesis to some inputs. -/
 example (f : α → β) (g : β → γ) (hf : Injective f) (hg : Injective g) :
     Injective (g ∘ f) := by
-  intro x y hxy
-  specialize hf x y
+  intro X Y hXY
+  unfold Injective at hf
+  specialize hf X Y
   apply hf
-  specialize hg (f x) (f y)
+  specialize hg (f X) (f Y)
   apply hg
-  exact hxy
+  exact hXY
 
 /-
 ## Inductive propositions with 1 constructor:
@@ -297,20 +298,19 @@ example (hPQ : P ↔ Q) (hQR : Q ↔ R) : P ↔ R := by
 example (α : Type) (P : α → Prop) (h : ∃ x, P x) : ¬ (∀ x, ¬ P x) := by
   intro hnot
   rcases h with ⟨x, hx⟩
-  apply hnot x
+  apply hnot
   exact hx
-  -- exact hnot x hx
 
 example (α : Type) (P Q : α → Prop) (h : ∃ x, P x ∧ Q x) :
     ∃ x, Q x ∧ P x := by
-  rcases h with ⟨x, ⟨hPx, hQx⟩⟩
+  rcases h with ⟨x, hPx, hQx⟩
   use x, hQx, hPx
 
 example (α : Type) (P Q : α → Prop) (h : ∃ x, P x ∧ Q x) :
     ∃ x, Q x ∧ P x := by
   rcases h with ⟨x, hPx, hQx⟩
   constructor
-  · exact ⟨hQx, hPx⟩
+  · use hQx, hPx
 
 example (α : Type) (P Q : α → Prop) :
     (∃ x, P x ∧ Q x) → ∃ x, Q x ∧ P x := by
@@ -376,7 +376,7 @@ start to see the power of `rcases`. -/
 
 /- First of all here's the definition of "divides". Since `↔` behaves
 like `=`, `rfl` can also prove this: -/
-lemma dvd_def {m n : ℕ} : m ∣ n ↔ ∃ a, n = m * a := by
+lemma dvd_def {m n : ℕ} : m ∣ n ↔ ∃ c, n = m * c := by
   rfl
 
 example {m n k : ℕ} (h : m ∣ n ∨ m ∣ k) : m ∣ n * k := by
