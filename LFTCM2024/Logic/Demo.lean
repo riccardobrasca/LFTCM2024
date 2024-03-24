@@ -34,6 +34,24 @@ Tactics we won't really discuss are in brackets.
 # Miscellaneous tactics we'll meet
 · `assumption`, `exfalso`, `unfold`, `rfl`, `ext`, `by_contra`,
   `by_cases`, `contrapose!`, `tauto`, `set`
+
+## Exercises
+Anything proved with `sorry` in this file is an exercise.
+You can make the exercises easier by using `apply?`, `rw?`
+or `exact?` and thus finding the corresponding result in
+mathlib, but that's not really the point of them - the point is
+to understand how to deal with logical connectives yourself.
+
+Sometimes you might find yourself having to use the same sublemma
+in multiple different exercises. See if you can state it as a
+separate lemma (don't state it as an `example` - state it as `lemma`
+and give it a name) so that you can use it whenever you need to.
+Feel free to turn the existing `example`s into lemmas if you want to
+reuse them.
+Factoring out the right lemmas is a really important skill to learn.
+
+Do whichever exercises you feel you need to; the last 2 are a little
+trickier.
 -/
 set_option linter.unusedVariables false
 namespace LFTCM2024
@@ -395,6 +413,9 @@ example (P Q R : Prop) :
     P ∨ (Q ∧ R) ↔ (P ∨ Q) ∧ (P ∨ R) := by
   sorry
 
+example : ¬P → P ∨ Q → Q := by
+  sorry
+
 example : ¬(P ∨ Q) ↔ ¬P ∧ ¬Q := by
   sorry
 
@@ -554,16 +575,33 @@ lemma mem_singleton_def {x y : α} :
     x ∈ ({y} : Set α) ↔ x = y := by
   rfl
 
+lemma mem_empty_def {x : α} : x ∈ (∅ : Set α) ↔ False := by
+  rfl
+
+lemma mem_univ_iff {x : α} : x ∈ Set.univ ↔ True := by
+  rfl
+
 /- Note that the `ext` tactic allows you to prove 2 sets are
 equal by proving they have the same elements: -/
 example {S T : Set α} (h : ∀ x, x ∈ S ↔ x ∈ T) : S = T := by
   ext x
   exact h x
 
+/- The `ext` tactic also allows you to prove 2 functions are equal
+by checking they're the same on every element: -/
+example {f g : α → β} (h : ∀ x, f x = g x) : f = g := by
+  ext x
+  exact h x
+
 /- The other direction can be useful too. -/
 lemma ext_iff {S T : Set α} :
     S = T ↔ ∀ x, x ∈ S ↔ x ∈ T := by
-  sorry
+  constructor
+  · intro h x
+    rw [h]
+  · intro h
+    ext x
+    exact h x
 
 /- Exercises -/
 section
@@ -578,7 +616,25 @@ lemma union_diff_inter : (S ∪ T) \ (S ∩ T) = S \ T ∪ T \ S := by
 lemma image_subset_iff {T : Set β} : f '' S ⊆ T ↔ S ⊆ f ⁻¹' T := by
   sorry
 
+lemma image_eq_empty_iff : f '' S = ∅ ↔ S = ∅ := by
+  sorry
+
 lemma image_singleton {x : α} : f '' {x} = {f x} := by
+  sorry
+
+lemma image_union : f '' (S ∪ T) = f '' S ∪ f '' T := by
+  sorry
+
+lemma image_diff_of_injective (hf : Injective f) :
+    f '' (S \ T) = f '' S \ f '' T := by
+  sorry
+
+lemma image_inter_of_injective (hf : Injective f) :
+    f '' (S ∩ T) = f '' S ∩ f '' T := by
+  sorry
+
+lemma image_inter_preimage {T : Set β} :
+    f '' (S ∩ f ⁻¹' T) = f '' S ∩ T := by
   sorry
 
 lemma compl_compl : Sᶜᶜ = S := by
@@ -588,8 +644,18 @@ lemma compl_compl_inter_compl :
     (Sᶜ ∩ Tᶜ)ᶜ = S ∪ T := by
   sorry
 
+lemma const_apply {x : α} {y : β} :
+    Function.const α y x = y := rfl
+
+/- Hint: the `trivial` tactic can prove the goal `True`. -/
+lemma exists_eq_const_of_preimage_singleton
+    (h : ∃ b : β, True) {f : α → β}
+    (hf : ∀ b : β, f ⁻¹' {b} = ∅ ∨ f ⁻¹' {b} = Set.univ) :
+    ∃ b, f = Function.const α b := by
+    sorry
+
 /-
-Longer exercise: here's something Timothy Gowers tweeted recently.
+Here's something Timothy Gowers tweeted recently.
 -/
 section
 variable {α β : Type} (f : α → β)
