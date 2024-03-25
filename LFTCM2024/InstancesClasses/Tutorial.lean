@@ -322,7 +322,8 @@ constant gives another Pythagorean triple. -/
 
 
 
-/- 4. Prove that triples of equivalent types are equivalent. -/
+/- 4. Prove that triples of equivalent types are equivalent.
+`≃` is the type of equivalences / bijections between two types. -/
 
 example (α β : Type*) (e : α ≃ β) : Triple α ≃ Triple β := sorry
 
