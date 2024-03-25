@@ -1,5 +1,6 @@
 import LFTCM2024.Common
 
+attribute [-instance] Prod.instAdd
 open BigOperators Finset Real
 noncomputable section
 set_option linter.unusedVariables false
@@ -273,7 +274,11 @@ instance AbelianGroup.prod (G G' : Type*) [AbelianGroup G] [AbelianGroup G'] :
 
 
 variable (x y z : MyIntegers) in
+set_option trace.Meta.synthInstance true in
 #check (x, y) + (z, x)
+
+
+
 
 
 
@@ -299,6 +304,9 @@ example (x : ℝ) : x * 1 = x := mul_one x
 
 
 
+
+example {K V : Type*} [Field K] [AddCommGroup V] [Module K V] (v : V) :
+  (1 : K) • v = v := by exact?
 
 
 
@@ -331,69 +339,3 @@ example (α β : Type*) (e : α ≃ β) : Triple α ≃ Triple β := sorry
 /- 5. Show that if `G` is an abelian group then triples from elements of `G` is an abelian group. -/
 
 example (G : Type*) [AbelianGroup G] : AbelianGroup (Triple G) := sorry
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/- ## Coercions
-
-You can specify *coercions* to say that an element of one type can be silently coerced to an element
-of another type. We've already seen the coercions
-`ℕ → ℤ → ℚ → ℝ → ℂ`
-for numbers.
--/
-
-recall PosReal := {x : ℝ // x > 0}
-
-instance : Coe PosReal Real := ⟨fun x ↦ x.1⟩
-
-def diff (x y : PosReal) : ℝ := x - y
-
-#check fun (x : PosReal) ↦ (x : ℂ)
-
-
-
-
-/-
-* We use `CoeSort` to coerce to `Type _` (or `Sort _`)
-* We use `CoeFun` to coerce to functions.
--/
-structure PointedType where
-  carrier : Type*
-  pt : carrier
-
-instance : CoeSort PointedType Type* := ⟨fun α ↦ α.carrier⟩
-
-structure PointedFunction (X Y : PointedType) where
-  toFun : X → Y
-  toFun_pt : toFun X.pt = Y.pt
-
-infix:50 " →. " => PointedFunction
-
-instance {X Y : PointedType} : CoeFun (X →. Y) (fun _ ↦ X → Y) := ⟨fun e ↦ e.toFun⟩
-
--- these two are hints to the pretty printer to print these operations a bit nicer.
-attribute [pp_dot] PointedType.pt
-attribute [coe] PointedFunction.toFun
-
-namespace PointedFunction
-
-variable {X Y Z : PointedType}
-
-@[simp] lemma coe_pt (f : X →. Y) : f X.pt = Y.pt := f.toFun_pt
-
-lemma comp (g : Y →. Z) (f : X →. Y) : X →. Z :=
-{ toFun := g ∘ f
-  toFun_pt := by sorry }
-
-end PointedFunction
