@@ -7,6 +7,7 @@ See also: https://leanprover-community.github.io/contribute/index.html
 
 * Do one-time git setup
   - On the command line, run the following two commands, with your name and email substituted in:
+  (In VSCode: `ctrl+J` to open terminal)
 ```
 git config --global user.name "Your Name"
 git config --global user.email "youremail@yourdomain.com"
@@ -18,10 +19,14 @@ git config --global user.email "youremail@yourdomain.com"
   - Try to follow the style guide: https://leanprover-community.github.io/contribute/style.html
 
 * Push to a branch of Mathlib
+  - You will see your branch here:
+  https://github.com/leanprover-community/mathlib4/branches/yours
 
 * Open a pull request
 
 * Wait for review and fix reviewer comments
+
+* If the PR gets delegated to you, write `bors merge` once all status checks pass.
 
 ---
 
