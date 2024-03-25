@@ -59,6 +59,7 @@ It can be called in various ways:
   `@[simp]`. This is often nearly the same as `rw [foo, bar]`, but the simp-set is not ordered.
 - `simp [foo, bar]` uses the default simp-set plus `foo` and `bar`.
 - `simp at h` calls simp at the hypothesis `h` rather than the goal.
+- `simp [-foo]` *removes* `foo` from the simp-set
 -/
 
 section simp
@@ -105,8 +106,21 @@ example (x : ℝ) : x + sin 0 = x := by
   simp [zero_eq_sin_zero]  -- fails, despite the fact that `sin_zero` and `add_zero` are still there
   sorry
 
-/- We can also use simp to unfold definitions -/
+/- We can add a lemma in the reverse direction, like for `rw` -/
+example (x : ℝ) : x + sin 0 = x := by
+  simp only [← zero_eq_sin_zero, add_zero]
 
+/- We can add arguments to lemmas -/
+example (x : ℝ) (h : 1 + x = 0) : x + 1 = 0 := by
+  --simp [add_comm, h]  -- fails
+  simp [add_comm x, h]  -- succeeds!
+
+/- We can use `simp` on a hypothesis -/
+example (x : ℝ) (h : 1 + x = 0) : x + 1 = 0 := by
+  simp only [add_comm (1 : ℝ)] at h
+  exact h
+
+/- We can also use simp to unfold definitions -/
 def myFunc (x : ℝ) := x
 
 example : sin (myFunc 0) = 0 := by
@@ -117,10 +131,31 @@ example : sin (myFunc 0) = 0 := by
 /- Of course this also works -/
 example : sin (myFunc 0) = 0 := by simp [myFunc]
 
+/- Another difference between `rw` and `simp` is that `simp` can rewrite under binders -/
+
+example : ∀ (x : ℕ), x + x = 2 * x := by
+  -- rw [two_mul]    -- fails because of the `∀`
+  simp only [two_mul]
+  -- Left with `ℕ → True`, which is the same as `∀ (n : ℕ), True`
+  intro x
+  trivial
+  -- another option is to use `simp_rw`
+  -- Left with `ℕ → True`, which is the same as `∀ (n : ℕ), True`
+  --simp_rw [two_mul]
+
+/- `simp_rw` is basically the same `rw` (i.e. it applies lemmas in order), except that it
+uses the `simp` engine internally and can rewrite under binders. -/
+
 end simp
 
 /-
-Casts
+Coercions/casting
+
+In informal math, we can say things like `ℚ ⊆ ℝ`, but in Lean these are distinct types,
+and an element of `ℚ` is *not* a real number. However, it can be coerced to a real. If
+we have a variable `x` of type `ℚ`, we can write `(x : ℝ)` to view it as a real.
+
+This can cause some pain, because these coercions can get in the way.
 -/
 
 section cast
@@ -161,8 +196,17 @@ example : x + 3 * y + z - x - y + z = 2 * y + 2 * z := by ring
 example : (x + y) * (x - y) = x^2 - y^2 := by
   ring
 
-/- This works for rings; there's also `abel` which works in a slightly more general setting but
-is usually a bit less powerful. `group` works for groups. -/
+/- This works for commutative rings; there's also `abel` which works in a slightly more
+general setting but is usually a bit less powerful. `group` works for groups.
+
+These tactics basically work by turning the expressions into a normal form.
+-/
+
+example {R : Type*} [Ring R] (x y z : R) :
+    x + y + z - y - x = z := by
+  -- ring   -- ironically doesn't do anything: `R` is not commutative
+  abel
+  -- I had to simplify the example, `abel` doesn't deal well with things like `3 : R`
 
 end ring
 
@@ -175,19 +219,20 @@ plugins that tell it how to compute particular functions applies to numeric lite
 
 example : (1 : ℝ) + 1 = 2 := by
   -- simp    -- simp fails (already a bit embarrassing)
-  -- exact?  -- finds a lemma specific to 1+1
+  -- exact?  -- finds a lemma specific to 1+1, or times out
   norm_num
 
 example : 5 ∣ 10 := by
   -- simp    -- simp again fails
   -- exact?  -- I will pay a beer to anyone who sees this coming
+             -- (unless it times out, no beer for this outcome)
   norm_num
 
 /-
 `linarith`: dealing with systems of linear inequalities
 
 This is a tactic that can make deductions based on a set of linear inequalities in the
-context.
+context. Uses Fourier-Motzkin elimination.
 -/
 
 section linarith
@@ -228,8 +273,8 @@ end linarith
 If you're dealing with integers, natural numbers, `Fin n`, there is another similar
 tactic called `omega`.
 
-It automatically uses things like `0 ≤ n` for any `n : ℕ`, or that `x < y` implies
-that `x + 1 ≤ y`.
+It automatically uses things like `0 ≤ n` for any `n : ℕ`, or that `x < y` is equivalent to
+`x + 1 ≤ y`.
 -/
 
 example (x y z : ℕ) (h1 : x + y + z = 15) (h2 : 10 < x + y) : z + 1 ≤ 5 := by omega
@@ -238,6 +283,12 @@ example (x y z : ℕ) (h1 : x + y + z = 15) (h2 : 10 < x + y) : z + 1 ≤ 5 := b
 is used to check array bounds automatically, and to automatically prove termination of
 recursive functions. -/
 
+def ackermann (m n : ℕ) : ℕ :=
+  match m, n with
+  | 0, _            => n + 1
+  | m' + 1, 0       => ackermann m' 1
+  | m' + 1, n' + 1  => ackermann m' (ackermann (m' + 1) n')
+
 /-
 `positivity`: Proving that an expression is positive/nonnegative/nonzero
 
@@ -245,7 +296,7 @@ It is often the case that one can deduce that an expression is "obviously positi
 its structure. Example: `x + y` if `x` and `y` are both positive.
 
 It works using a plugin system, where each plugin is a small program that can prove that an
-expression of a particular form (say, exp x) is positive/nonnegative/nonzero.
+expression of a particular form (say, `exp x`) is positive/nonnegative/nonzero.
 -/
 
 section positivity
@@ -296,3 +347,27 @@ example (x y : ℝ) (h : y ≤ x) : sin x + y ≤ 1 + x := by
               gcongr
 
 end gcongr
+
+/- `conv`: Zooming in to an expression.
+
+Sometimes we have a big expression, and we'd like to "zoom in" on part of it and apply
+tactics only to that part. To do this:
+1. Use `conv?`
+2. Click on the subexpression you want to zoom into
+3. Click "Generate conv"
+4. Profit
+ -/
+
+section conv
+
+open Real
+
+example (x y z : ℝ) (h : sin (x + y) + cos (z + x) = 1) :
+    sin (x + y) + cos (x + z) = 1 := by
+  --conv?
+  conv =>
+    enter [1, 2, 1]
+    rw [add_comm]
+  exact h
+
+end conv
