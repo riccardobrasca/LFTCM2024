@@ -4,8 +4,6 @@ LFTCM 2024: Using Mathlib
 
 import Mathlib
 
-#eval 0
-
 /-!
 ## Tools for finding results in Mathlib:
 
@@ -425,6 +423,39 @@ sparse.
 #help attr simps
 #help attr ext
 
+
+/-! ### Example 9: Sometimes it's actually missing, even simple things
+
+Let's find:
+1. the intersection of intervals `[a, b]` and `[c, d]` is another closed interval.
+2. that `(a, b) ∩ (c, ∞)` is an open finite interval.
+
+How does lean even call these intervals?
++ Moogle: [closed interval intersection](https://www.moogle.ai/search/raw?q=closed%20interval)
+  yields as th second hit [`Set.Icc`](https://leanprover-community.github.io/mathlib4_docs/Mathlib/Data/Set/Intervals/Basic.html#Set.Icc)
+  where we also find `Set.Ioo`, `Set.Ioc`, `Set.Ioi`, etc.
+
+For (1), we try:
++ Loogle: [Set.Icc ?a ?b ∩ Set.Icc ?c ?d](https://loogle.lean-lang.org/?q=Set.Icc+%3Fa+%3Fb+∩+Set.Icc+%3Fc+%3Fd)
+  success! `Set.Icc a₁ b₁ ∩ Set.Icc a₂ b₂ = Set.Icc (a₁ ⊔ a₂) (b₁ ⊓ b₂)`
+-/
+#check Set.Icc_inter_Icc
+/-
+For (2), we try
++ Loogle: [Set.Ioo ?a ?b ∩ Set.Ioi ?c](https://loogle.lean-lang.org/?q=Set.Ioo+%3Fa+%3Fb+∩+Set.Ioi+%3Fc)
+  no hits. :(
++ Loogle: [Set.Ioi, Inter.inter, Set.Ioo](https://loogle.lean-lang.org/?q=Set.Ioi%2C+Inter.inter%2C+Set.Ioo)
+  two results, neither the one we want.
++ Is there code for X?: https://leanprover.zulipchat.com/#narrow/stream/217875-Is-there-code-for-X.3F/topic/Ioo_inter_Ioi/near/426780505
+  we just don't have this result. (You can create a PR if you want! Although since we have so many
+  people, maybe claim it on Zulip first so that we don't get 10 PRs of the same thing.)
+-/
+
+/-! ### Exercise 10: Audience questions
+
+What are some things you would like to find in Mathlib?
+-/
+
 /-
 Things to find:
 
@@ -441,5 +472,6 @@ example (f : ℝ → ℝ) (hf : Continuous f) (a b : ℝ) (ha : f a < 0) (hb : 0
   have : 0 ∈ Set.Icc (f a) (f b) := by
     simp only [Set.mem_Icc]
     exact ⟨ha.le, hb.le⟩
+
 
   sorry
