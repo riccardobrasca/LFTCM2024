@@ -322,7 +322,7 @@ example (h₁ : x ≤ 5) (h₂ : y = 10) : x + y ≤ 15 := by
 `gcongr`: working with inequalities (and other relations)
 
 Suppose we need to prove that `f x ≤ f y` where `f` here could be a complicated expression which
-is monotone in its argument. So we want to reduce this to showing that x ≤ y. Here gcongr very often
+is monotone in its argument. So we want to reduce this to showing that x ≤ y. Here `gcongr` very often
 helps.
 
 It works by tagging relevant lemmas in the library, and these are then applied to reduce the goal

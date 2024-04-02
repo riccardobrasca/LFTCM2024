@@ -178,7 +178,7 @@ lemma myCoolFunction_continuous : Continuous (fun x ↦ (sin (x ^ 2)) ^ 3 + cos 
 /-
 Some differences between rewriting and applying:
 - Rewriting can take place almost anywhere in the goal, but apply generally has to match the
-  conclusion of the goal you are trying to prove e.g. if you are trying to prove an "and" satement,
+  conclusion of the goal you are trying to prove e.g. if you are trying to prove an "and" statement,
   you'll need to split it in to two goals before trying to `apply` a lemma that will
   affect only one part.
 - Sometimes many rewrites are possible using the same lemma, and specifying more of
