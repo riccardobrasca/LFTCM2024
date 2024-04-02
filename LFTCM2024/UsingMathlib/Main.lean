@@ -13,7 +13,7 @@ import Mathlib
   is great reference, but you either need to know where to look, or what things are
   named. To help with naming, you can reference the
   [naming conventions](https://leanprover-community.github.io/mathlib_docs/naming.html).
-+ [Loogle](https://loogle.lean-lang.org) is useful if you know somehings about the types appearing
++ [Loogle](https://loogle.lean-lang.org) is useful if you know something about the types appearing
   in the statement.
 + [Moogle](https://moogle.ai) is useful if you only know the natural language phrasing.
 + [Zulip](https://leanprover.zulipchat.com‌/) in the `Is there code for X?` stream is a good place
@@ -93,14 +93,14 @@ example (n : ℕ) : ℤ →+* (ZMod n) := Int.castRingHom (ZMod n)
 noncomputable example (n : ℕ) : ℤ ⧸ (Int.castAddHom (ZMod n)).ker ≃+ (ZMod n) := by
   apply QuotientAddGroup.quotientKerEquivOfSurjective
   intro x
-  use x.valMinAbs -- easily found with loogle: `⊢ ZMod ?n → ℤ`
+  use x.valMinAbs -- easily found with Loogle: `⊢ ZMod ?n → ℤ`
   simp
 
 /-! ### Example 3: ​If the number of vectors exceeds the dimension, the set is linearly dependent
 
 Moogle [​If the number of vectors exceeds the dimension, the set is linearly dependent](https://www.moogle.ai/search/raw?q=If%20the%20number%20of%20vectors%20exceeds%20the%20dimension%2C%20the%20set%20is%20linearly%20dependent)
 
-* almost no useful results, execpt we do know that `LinearIndependent` exists, but that
+* almost no useful results, except we do know that `LinearIndependent` exists, but that
   `LinearDependent` does not seem to.
 * closest result is: `exists_linearIndependent_cons_of_lt_rank`
 * also has: `linearIndependent_iff_card_eq_finrank_span`
@@ -386,7 +386,7 @@ example (x : ℚ) (hx : x ∈ Subsemiring.closure {(5 : ℚ)}) : ∃ n : ℕ, x 
     use n * m
     exact_mod_cast rfl
 
--- a nonempy finite set in `ℕ` has a maximum element
+-- a nonempty finite set in `ℕ` has a maximum element
 -- you shouldn't necessarily be able to follow the proof very easily.
 example (s : Set ℕ) (hs : s.Finite) (h_non : s.Nonempty) : ∃ x ∈ s, ∀ y ∈ s, y ≤ x := by
   revert h_non
