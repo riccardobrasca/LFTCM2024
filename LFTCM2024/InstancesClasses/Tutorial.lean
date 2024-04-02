@@ -171,7 +171,7 @@ def PointPoint'.add (a b : PosPoint') : PosPoint' :=
 
 /- **subtypes**
 For simple types we can use subtype. The notation is `{x : α // p x}`.
-This constists of pairs `⟨x, h⟩` where `x : α` and `h : p x`.
+This consists of pairs `⟨x, h⟩` where `x : α` and `h : p x`.
 Note: there is similar notation `{x : α | p x}` to define an element of `Set α`. -/
 
 def PosReal : Type :=
@@ -179,7 +179,7 @@ def PosReal : Type :=
 
 /- Elements here are pairs of
   (1) a real number
-  (2) a proof that this real number is postive. -/
+  (2) a proof that this real number is positive. -/
 
 example (x : ℝ) (hx : x > 0) : PosReal := ⟨x, hx⟩
 
