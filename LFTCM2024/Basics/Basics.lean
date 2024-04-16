@@ -99,8 +99,6 @@ lemma inv_commutator {G : Type} [Group G] (g h : G) : ⁅g, h⁆⁻¹ = ⁅h, g�
   rw [mul_assoc]
   rw [mul_assoc]
   -- later we will learn tactics for doing these things in few or 1 step
-  group
-  group
 
 /-
 Names
@@ -152,8 +150,6 @@ exercises!  -/
 
 example : Continuous (fun x ↦ (sin (x ^ 2)) ^ 3 + cos (5 * x)) := by
   sorry
-  -- continuity?
-  -- aesop (options := { terminal := true }) (rule_sets [$(Lean.mkIdent `Continuous):ident])
 
 /-
 **Forwards reasoning** is where we chain implications forwards, deducing new facts from what we
@@ -184,18 +180,6 @@ Some differences between rewriting and applying:
 - Sometimes many rewrites are possible using the same lemma, and specifying more of
   the arguments will help, `rw [mul_assoc b a c]` instead of  `rw [mul_assoc a b c]`.
 -/
-
-example :
-  Continuous ((fun (x : ℝ) ↦ if x < 0 then (1 : ℝ) else -1) +
-               fun x ↦ if x < 0 then -1 else x + 1) := by
-  apply Continuous.add <;> dsimp
-  apply continuous_if
-  intro a ha
-  simp [frontier_eq_inter_compl_interior] at ha -- TODO
-  sorry
-  sorry
-  sorry
-  sorry
 
 /-
 What is actually happening here?
